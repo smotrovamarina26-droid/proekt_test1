@@ -3,28 +3,100 @@ document.addEventListener("DOMContentLoaded", () => {
   if (!app) return;
 
   const counters = new Map();
-  const habitCards = app.querySelectorAll(".habit-card");
+  const habitsList = app.querySelector(".habits-list");
+  if (!habitsList) return;
 
-  habitCards.forEach((card) => {
-    const id = card.getAttribute("data-habit-id") || Symbol("habit");
-    const counterEl = card.querySelector("[data-counter]");
-    const button = card.querySelector(".habit-btn");
+  const newHabitInput = document.getElementById("new-habit-input");
+  const addHabitButton = document.getElementById("add-habit-btn");
 
-    if (!counterEl || !button) return;
+  let nextHabitId = 1;
 
-    counters.set(id, 0);
+  const registerCard = (card) => {
+    const id = card.getAttribute("data-habit-id");
+    if (!id) return;
+    if (!counters.has(id)) counters.set(id, 0);
+  };
 
-    button.addEventListener("click", () => {
-      const current = counters.get(id) ?? 0;
-      const next = current + 1;
-      counters.set(id, next);
-      counterEl.textContent = String(next);
-    });
+  app.querySelectorAll(".habit-card").forEach((card) => {
+    registerCard(card);
   });
+
+  const createHabitCard = (name, id) => {
+    const card = document.createElement("article");
+    card.className = "habit-card";
+    card.setAttribute("data-habit-id", id);
+    card.innerHTML = `
+      <div class="habit-main">
+        <h2 class="habit-title" data-title></h2>
+        <button class="edit-btn" type="button" aria-label="Редактировать название">✏️</button>
+        <button class="delete-btn" type="button" aria-label="Удалить привычку">🗑️</button>
+      </div>
+      <div class="habit-controls">
+        <button class="habit-btn" type="button">+1</button>
+        <span class="habit-counter" data-counter>0</span>
+      </div>
+    `;
+    const title = card.querySelector("[data-title]");
+    if (title) title.textContent = name;
+    return card;
+  };
+
+  const addHabit = () => {
+    if (!(newHabitInput instanceof HTMLInputElement)) return;
+    const name = newHabitInput.value.trim();
+
+    if (!name) {
+      alert("Введите название привычки.");
+      return;
+    }
+
+    const id = `custom-${nextHabitId++}`;
+    const card = createHabitCard(name, id);
+    habitsList.append(card);
+    counters.set(id, 0);
+    newHabitInput.value = "";
+    newHabitInput.focus();
+  };
+
+  if (addHabitButton) {
+    addHabitButton.addEventListener("click", addHabit);
+  }
+
+  if (newHabitInput instanceof HTMLInputElement) {
+    newHabitInput.addEventListener("keydown", (e) => {
+      if (e.key === "Enter") addHabit();
+    });
+  }
 
   app.addEventListener("click", (event) => {
     const target = event.target;
     if (!(target instanceof Element)) return;
+
+    const plusButton = target.closest(".habit-btn");
+    if (plusButton) {
+      const card = plusButton.closest(".habit-card");
+      if (!card) return;
+      const id = card.getAttribute("data-habit-id");
+      const counterEl = card.querySelector("[data-counter]");
+      if (!id || !counterEl) return;
+
+      const current = counters.get(id) ?? 0;
+      const next = current + 1;
+      counters.set(id, next);
+      counterEl.textContent = String(next);
+      return;
+    }
+
+    const deleteButton = target.closest(".delete-btn");
+    if (deleteButton) {
+      const card = deleteButton.closest(".habit-card");
+      if (!card) return;
+
+      const id = card.getAttribute("data-habit-id");
+      if (id) counters.delete(id);
+      card.remove();
+      return;
+    }
 
     const editButton = target.closest(".edit-btn");
     if (!editButton) return;

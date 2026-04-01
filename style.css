@@ -84,6 +84,48 @@ body {
   gap: 14px;
 }
 
+.add-habit {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.new-habit-input {
+  width: 100%;
+  padding: 10px 12px;
+  border-radius: 12px;
+  border: 1px solid rgba(148, 163, 184, 0.6);
+  outline: none;
+  font: inherit;
+  background: #ffffff;
+}
+
+.new-habit-input:focus {
+  border-color: rgba(76, 111, 255, 0.75);
+  box-shadow: 0 0 0 4px rgba(76, 111, 255, 0.12);
+}
+
+.add-habit-btn {
+  align-self: flex-start;
+  padding: 8px 16px;
+  border-radius: var(--radius-pill);
+  border: none;
+  background: var(--accent);
+  color: #ffffff;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 6px 14px rgba(76, 111, 255, 0.3);
+  transition: background 0.15s ease, transform 0.08s ease, box-shadow 0.15s ease;
+}
+
+.add-habit-btn:hover {
+  background: var(--accent-hover);
+}
+
+.add-habit-btn:active {
+  transform: scale(0.98);
+}
+
 .habit-card {
   background: var(--bg-card);
   border-radius: var(--radius-lg);
@@ -121,6 +163,27 @@ body {
   cursor: pointer;
   line-height: 1;
   transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease, transform 0.08s ease;
+}
+
+.delete-btn {
+  flex: 0 0 auto;
+  border: 1px solid rgba(248, 113, 113, 0.45);
+  background: rgba(254, 242, 242, 0.95);
+  color: #b91c1c;
+  border-radius: var(--radius-pill);
+  padding: 6px 10px;
+  cursor: pointer;
+  line-height: 1;
+  transition: background 0.2s ease, border-color 0.2s ease, transform 0.08s ease;
+}
+
+.delete-btn:hover {
+  background: #fee2e2;
+  border-color: rgba(248, 113, 113, 0.65);
+}
+
+.delete-btn:active {
+  transform: scale(0.97);
 }
 
 .edit-btn:hover {
@@ -191,6 +254,15 @@ body {
     padding-inline: 22px;
   }
 
+  .add-habit {
+    flex-direction: row;
+    align-items: center;
+  }
+
+  .add-habit-btn {
+    white-space: nowrap;
+  }
+
   .habit-card {
     padding: 16px 18px;
   }
@@ -209,9 +281,5 @@ body {
 
   .habits-list {
     grid-template-columns: 1fr 1fr;
-  }
-
-  .habit-card:nth-child(3) {
-    grid-column: 1 / -1;
   }
 }

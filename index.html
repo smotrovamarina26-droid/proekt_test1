@@ -13,11 +13,23 @@
         <button id="reset-all" class="reset-button">Сбросить всё</button>
       </header>
 
+      <section class="add-habit" aria-label="Добавление привычки">
+        <input
+          id="new-habit-input"
+          class="new-habit-input"
+          type="text"
+          placeholder="Новая привычка"
+          aria-label="Введите название привычки"
+        />
+        <button id="add-habit-btn" class="add-habit-btn" type="button">Добавить привычку</button>
+      </section>
+
       <main class="habits-list">
         <article class="habit-card" data-habit-id="water">
           <div class="habit-main">
             <h2 class="habit-title" data-title>Пить воду</h2>
             <button class="edit-btn" type="button" aria-label="Редактировать название">✏️</button>
+            <button class="delete-btn" type="button" aria-label="Удалить привычку">🗑️</button>
           </div>
           <div class="habit-controls">
             <button class="habit-btn" type="button">+1</button>
@@ -29,6 +41,7 @@
           <div class="habit-main">
             <h2 class="habit-title" data-title>Прогулка</h2>
             <button class="edit-btn" type="button" aria-label="Редактировать название">✏️</button>
+            <button class="delete-btn" type="button" aria-label="Удалить привычку">🗑️</button>
           </div>
           <div class="habit-controls">
             <button class="habit-btn" type="button">+1</button>
@@ -40,6 +53,7 @@
           <div class="habit-main">
             <h2 class="habit-title" data-title>Чтение</h2>
             <button class="edit-btn" type="button" aria-label="Редактировать название">✏️</button>
+            <button class="delete-btn" type="button" aria-label="Удалить привычку">🗑️</button>
           </div>
           <div class="habit-controls">
             <button class="habit-btn" type="button">+1</button>
