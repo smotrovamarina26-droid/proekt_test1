@@ -95,9 +95,58 @@ body {
   gap: 16px;
 }
 
+.habit-main {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 0;
+  flex: 1;
+}
+
 .habit-title {
   margin: 0;
   font-size: 1.05rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.edit-btn {
+  flex: 0 0 auto;
+  border: 1px solid rgba(148, 163, 184, 0.5);
+  background: rgba(248, 250, 252, 0.9);
+  color: var(--text-muted);
+  border-radius: var(--radius-pill);
+  padding: 6px 10px;
+  cursor: pointer;
+  line-height: 1;
+  transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease, transform 0.08s ease;
+}
+
+.edit-btn:hover {
+  background: #e5e7eb;
+  color: var(--text-main);
+  border-color: #cbd5f5;
+}
+
+.edit-btn:active {
+  transform: scale(0.97);
+}
+
+.habit-title-input {
+  width: 100%;
+  min-width: 140px;
+  padding: 6px 10px;
+  border-radius: 12px;
+  border: 1px solid rgba(148, 163, 184, 0.7);
+  outline: none;
+  font: inherit;
+  background: #ffffff;
+}
+
+.habit-title-input:focus {
+  border-color: rgba(76, 111, 255, 0.75);
+  box-shadow: 0 0 0 4px rgba(76, 111, 255, 0.12);
 }
 
 .habit-controls {
