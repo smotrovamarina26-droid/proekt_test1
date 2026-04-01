@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Habit Tracker</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="app">
+      <header class="app-header">
+        <h1>Мои привычки</h1>
+        <button id="reset-all" class="reset-button">Сбросить всё</button>
+      </header>
+
+      <main class="habits-list">
+        <article class="habit-card" data-habit-id="water">
+          <h2 class="habit-title">Пить воду</h2>
+          <div class="habit-controls">
+            <button class="habit-btn" type="button">+1</button>
+            <span class="habit-counter" data-counter>0</span>
+          </div>
+        </article>
+
+        <article class="habit-card" data-habit-id="walk">
+          <h2 class="habit-title">Прогулка</h2>
+          <div class="habit-controls">
+            <button class="habit-btn" type="button">+1</button>
+            <span class="habit-counter" data-counter>0</span>
+          </div>
+        </article>
+
+        <article class="habit-card" data-habit-id="reading">
+          <h2 class="habit-title">Чтение</h2>
+          <div class="habit-controls">
+            <button class="habit-btn" type="button">+1</button>
+            <span class="habit-counter" data-counter>0</span>
+          </div>
+        </article>
+      </main>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+  </html>
